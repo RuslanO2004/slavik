@@ -1,0 +1,312 @@
+<!-- Объявление типа документа -->
+<!DOCTYPE html>
+
+<!-- Начало HTML-документа -->
+<html>
+
+ <!-- Подключение внешнего шрифта -->
+ <link href="https://fonts.cdnfonts.com/css/impact" rel="stylesheet">
+
+ <!-- Начало головного раздела документа -->
+ <head>
+
+   <!-- Заголовок веб-страницы -->
+   <title>Snake Game for Two Players</title>
+
+   <!-- Кодировка символов -->
+   <meta charset="UTF-8">
+
+   <!-- Внутренний CSS-стиль -->
+   <style>
+   /* Стилизация элементов html и body */
+   html, body {
+     height: 100%;
+     margin: 0;
+   }
+
+   /* Стилизация тела документа */
+   body {
+     background: black;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background:transparent;
+     background:url(https://fonoteka.top/uploads/posts/2021-05/1620121633_1-phonoteka_org-p-fon-s-krestikami-i-kruzhkami-5.jpg) repeat;
+   }
+
+   /* Стилизация элемента canvas */
+   canvas {
+     border: 1px solid white;
+   }
+
+   /* Стилизация элемента scores */
+   #scores {
+     color: white;
+     position: absolute;
+     top: 10px;
+     right: 10px;
+   }
+
+   /* Стилизация элемента game */
+   #game {
+     background-color: black;
+     transform: scale(2);
+   }
+
+   /* Стилизация абзацев внутри элемента scores */
+   #scores p {
+     background-color: rgba(0, 0, 0, 1); /* полупрозрачный черный фон */
+     border-radius: 50%; /* делает фон круглым */
+     padding: 30px; /* добавляет пространство вокруг текста внутри фона */
+     color: white; /* делает текст белым */
+     font-family: 'Impact', sans-serif;
+     font-size: 30px;
+     border-radius: 10%;
+     border: 1px solid #ffffff;
+   }
+
+   /* Класс для круглой кнопки */
+.round-button {
+ background-color: #ffffff; /* Белый фон */
+ border: none; /* Без границы */
+ color: rgb(0, 0, 0); /* Черный текст */
+ padding: 15px 22px; /* Отступы вокруг текста */
+ text-align: center; /* Выравнивание текста по центру */
+ text-decoration: none; /* Без подчеркивания */
+ display: inline-block; /* Блочный элемент, но с возможностью выравнивания по центру */
+ font-size: 20px; /* Размер шрифта */
+ margin: 4px 2px; /* Отступы между кнопками */
+ cursor: pointer; /* Курсор в виде руки при наведении */
+ border-radius: 50%; /* Скругление углов, делает кнопку круглой */
+ width: 20px; /* Ширина кнопки */
+ height: 20px; /* Высота кнопки */
+ line-height: 20px; /* Вертикальное выравнивание текста */
+ user-select: none;
+ transition: all 0.35s ease 0s; /* Плавная анимация */
+}
+
+/* Эффект при наведении на кнопку */
+.round-button:hover {
+ background-color: #000000; /* Черный фон при наведении */
+ color: rgb(255, 255, 255); /* Белый текст при наведении */
+ width: 40px; /* Ширина кнопки */
+ height: 40px; /* Высота кнопки */
+ line-height: 40px; /* Вертикальное выравнивание текста */
+ box-shadow: 0 0 0 8000px rgba(255, 255, 255, 0.5);
+}
+   </style>
+   <div style="position: fixed; top: 0; left: 0;">
+    <a href="../INDEX.html" class="round-button">&#9665</a>
+     </div>
+ </head>
+
+ <!-- Начало основного содержимого документа -->
+ <body>
+
+   <!-- Создание элемента canvas -->
+   <canvas width="400" height="400" id="game"></canvas>
+
+   <!-- Создание элемента scores -->
+   <div id="scores">
+     <p id="score1">ЗМЕЙКА 1 ОЧКИ: 0</p>
+     <p id="score2">ЗМЕЙКА 2 ОЧКИ: 0</p>
+   </div>
+
+   <!-- Внедрение JavaScript-кода -->
+   <script>
+
+   /* Объявление переменных */
+   var canvas = document.getElementById('game');
+   var context = canvas.getContext('2d');
+   var grid = 16;
+   var count = 0;
+   var player1Score = 0;
+   var player2Score = 0;
+
+   window.onload = function() {
+ document.getElementById('score1').style.color = 'green';
+ document.getElementById('score2').style.color = 'blue';
+};
+
+   /* Объявление объектов змей */
+   var snake1 = {
+     x: 160,
+     y: 160,
+     dx: grid,
+     dy: 0,
+     cells: [],
+     maxCells: 4,
+     color: 'green'
+   };
+
+   var snake2 = {
+     x: 240,
+     y: 240,
+     dx: -grid,
+     dy: 0,
+     cells: [],
+     maxCells: 4,
+     color: 'blue'
+   };
+
+   /* Объявление объекта яблока */
+   var apple = {
+     x: 320,
+     y: 320
+   };
+
+   /* Функция для генерации случайного числа */
+   function getRandomInt(min, max) {
+     return Math.floor(Math.random() * (max - min)) + min;
+   }
+
+   /* Главная функция игрового цикла */
+   function loop() {
+     requestAnimationFrame(loop);
+     if (++count < 4) {
+       return;
+     }
+
+     count = 0;
+     context.clearRect(0,0,canvas.width,canvas.height);
+
+     updateSnake(snake1, snake2, 'score1');
+     updateSnake(snake2, snake1, 'score2');
+
+     context.fillStyle = 'red';
+     context.fillRect(apple.x, apple.y, grid-1, grid-1);
+   }
+
+   /* Функция обновления состояния змеи */
+   function updateSnake(snake, otherSnake, scoreId) {
+/* Обработка движения змейки */
+snake.x += snake.dx;
+snake.y += snake.dy;
+
+/* Ограничение движения змейки по границам холста */
+if (snake.x < 0) {
+ snake.x = canvas.width - grid;
+} else if (snake.x >= canvas.width) {
+ snake.x = 0;
+}
+
+if (snake.y < 0) {
+ snake.y = canvas.height - grid;
+} else if (snake.y >= canvas.height) {
+ snake.y = 0;
+}
+
+/* Добавление новой ячейки к змейке */
+snake.cells.unshift({x: snake.x, y: snake.y});
+
+/* Удаление последней ячейки из змейки, если она превышает максимальное количество ячеек */
+if (snake.cells.length > snake.maxCells) {
+ snake.cells.pop();
+}
+
+/* Заполнение ячеек змейки соответствующим цветом */
+context.fillStyle = snake.color;
+snake.cells.forEach(function(cell, index) {
+ context.fillRect(cell.x, cell.y, grid-1, grid-1);
+
+ /* Проверка на столкновение с яблоком */
+ if (cell.x === apple.x && cell.y === apple.y) {
+   snake.maxCells++;
+   apple.x = getRandomInt(0, 25) * grid;
+   apple.y = getRandomInt(0, 25) * grid;
+
+   /* Увеличение счета у соответствующего игрока */
+   if (snake === snake1) {
+     player1Score++;
+     document.getElementById('score1').style.color = 'green';
+   } else {
+     player2Score++;
+     document.getElementById('score2').style.color = 'blue';
+   }
+   document.getElementById(scoreId).innerText = 'ЗМЕЙКА ' + (snake === snake1 ? '1' : '2') + ' ОЧКИ: ' + (snake === snake1 ? player1Score : player2Score);
+ }
+
+ /* Проверка на столкновение с другой змейкой */
+ for (var i = 0; i < otherSnake.cells.length; i++) {
+   if (cell.x === otherSnake.cells[i].x && cell.y === otherSnake.cells[i].y) {
+     snake.x = snake === snake1 ? 160 : 240;
+     snake.y = snake === snake1 ? 160 : 240;
+     snake.cells = [];
+     snake.maxCells = 4;
+     snake.dx = snake === snake1 ? grid : -grid;
+     snake.dy = 0;
+
+     /* Сброс счета у соответствующего игрока */
+     if (snake === snake1) {
+       player1Score = 0;
+     } else {
+       player2Score = 0;
+     }
+     document.getElementById(scoreId).innerText = 'ЗМЕЙКА ' + (snake === snake1 ? '1' : '2') + ' ОЧКИ: ' + (snake === snake1 ? player1Score : player2Score);
+   }
+ }
+
+/* Проверка на столкновение с самой собой */
+for (var i = index + 1; i < snake.cells.length; i++) {
+ if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+ snake.x = snake === snake1 ? 160 : 240;
+ snake.y = snake === snake1 ? 160 : 240;
+ snake.cells = [];
+ snake.maxCells = 4;
+ snake.dx = snake === snake1 ? grid : -grid;
+ snake.dy = 0;
+
+ apple.x = getRandomInt(0, 25) * grid;
+ apple.y = getRandomInt(0, 25) * grid;
+
+ /* Сброс счета у соответствующего игрока */
+ if (snake === snake1) {
+   player1Score = 0;
+   document.getElementById('score1').innerText = 'ЗМЕЙКА 1 ОЧКИ: ' + player1Score;
+ } else {
+   player2Score = 0;
+   document.getElementById('score2').innerText = 'ЗМЕЙКА 2 ОЧКИ: ' + player2Score;
+ }
+ }
+}
+
+});
+}
+
+/* Обработка нажатий клавиш для управления змейками */
+document.addEventListener('keydown', function(e) {
+ // Player 1 controls
+ if (e.which === 87 && snake1.dy === 0) { // W
+   snake1.dy = -grid;
+   snake1.dx = 0;
+ } else if (e.which === 83 && snake1.dy === 0) { // S
+   snake1.dy = grid;
+   snake1.dx = 0;
+ } else if (e.which === 65 && snake1.dx === 0) { // A
+   snake1.dy = 0;
+   snake1.dx = -grid;
+ } else if (e.which === 68 && snake1.dx === 0) { // D
+   snake1.dy = 0;
+   snake1.dx = grid;
+ }
+
+  // Player 2 controls
+  if (e.which === 38 && snake2.dy === 0) { // UP
+    snake2.dy = -grid;
+    snake2.dx = 0;
+  } else if (e.which === 40 && snake2.dy === 0) { // DOWN
+    snake2.dy = grid;
+    snake2.dx = 0;
+  } else if (e.which === 37 && snake2.dx === 0) { // LEFT
+    snake2.dy = 0;
+    snake2.dx = -grid;
+  } else if (e.which === 39 && snake2.dx === 0) { // RIGHT
+    snake2.dy = 0;
+    snake2.dx = grid;
+  }
+});
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

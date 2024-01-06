@@ -1,0 +1,403 @@
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.cdnfonts.com/css/impact" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            
+
+  <br><br><br>
+
+  <style>
+
+  body{
+  background:transparent;
+  background:url(https://fonoteka.top/uploads/posts/2021-05/1620121633_1-phonoteka_org-p-fon-s-krestikami-i-kruzhkami-5.jpg) repeat;
+  }
+
+
+  .rating {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+
+  .rating__star {
+    cursor: pointer;
+    color: #dabd18b2;
+  }
+
+
+
+  .our-team{
+    width: 100%;
+    background: #f5f5f5;
+    text-align: center;
+    transition: transform 0.3s ease;
+    z-index: 1; /* Добавьте это свойство */
+}
+
+  .our-team .pic{
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+  transition: all 0.3s ease 0s;
+  }
+  .our-team .pic:hover {
+  transform: scale(1.01);
+  transform: translateY(-10px);
+}
+.row:first-child {
+   margin-bottom: 30px;
+}
+
+  .our-team .pic:after{
+  content: "";
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 900px rgba(255, 255, 255, 0.5);
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 1);
+  transform-origin: 50% 50% 0;
+  transition: all 0.35s ease 0s;
+  }
+
+
+  .our-team .pic img{
+  width: 100%;
+  height: auto;
+  }
+  .our-team .read-more{
+  width: 100px;
+  padding: 0 15px 15px 0;
+  font-size: 21px;
+  color: #fff;
+  letter-spacing: 0.35px;
+  text-align: right;
+  text-transform: uppercase;
+  text-decoration:none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 1;
+  transform: translate3d(20px, 20px, 0px);
+  transition: all 0.35s ease 0s;
+  }
+
+  .our-team .team-content{
+  padding: 20px 0;
+  }
+  .our-team .title{
+  font-size: 22px;
+  font-weight: 700;
+  color: red;
+  text-transform: capitalize;
+  margin: 0 0 8px 0;
+  }
+  .our-team .post{
+  font-size: 13px;
+  font-weight: 500;
+  color: #6e6e70;
+  text-transform: capitalize;
+  }
+
+
+
+
+  .our-team .description {
+    z-index: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 1); /* Добавьте фон, чтобы текст был видимым */
+  color: #000000; /* Измените цвет текста, чтобы он был видимым */
+  width: 262.5; /* Установите ширину и высоту, чтобы обеспечить пространство для текста */
+  height: auto;
+  position: absolute; 
+  padding: 10px; /* Добавьте отступ, чтобы текст не прилипал к краям */
+}
+
+@media only screen and (max-width: 990px){
+  .our-team{ margin-bottom: 30px; }
+  }
+
+
+.our-team .pic:hover ~ .description {
+  z-index: 1;
+  opacity: 1;
+}
+
+.our-team .pic:hover:after {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.our-team .pic:hover .read-more {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+
+
+
+.post {
+  font-family: 'Impact', sans-serif;
+}
+
+
+  </style>
+
+  <div class="container">
+  <div class="row">
+
+  <div class="col-md-3 col-sm-6">
+    
+  <div class="our-team">
+    <div class="pic">
+      <img src="flappy.jpeg" alt=""/>
+      <a href="flappy/index.html" class="read-more">&#9655</a>
+    </div>
+    
+  <div class="team-content">
+    
+  <h3 class="title">
+      <div class="rating">
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+      </div>
+      
+  </h3>
+
+  <span style="font-size: 20px;" class="post">Flappy Bird</span>
+  </div>
+  <div class="description">Flappy Bird — игра, в которой надо управлять жёлтой птицей. Геймплей прост. Полет ее - крыльев взмахи, которые поднимают птицу вверх. Таким образом надо пролетать через зеленые трубы и стараться не удариться о трубы или землю. Игра заканчивается тогда, когда бедная птичка ударится больно-пребольно.</div>
+  </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+  <div class="our-team">
+  <div class="pic">
+  <img src="snake.jpg" alt=""/>
+  <a href="snake/змейка.html" class="read-more">&#9655</a>
+  </div>
+  <div class="team-content">
+  <h3 class="title">
+      <div class="rating">
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+      </div>
+  </h3>
+  <span style="font-size: 20px;" class="post">Snake 2 players</span>
+  </div>
+  <div class="description">Змейка для двух игроков - игра, где два игрока соревнуются друг с другом. Игроки управляют своими змейками, стремясь съесть больше всего яблок и стать самыми длинными. Однако ваш противник может попытаться украсть ваше яблоко, а также загнать вашу змейку в ловушку, уничтожив её. Каждый игрок имеет свой собственный счет, который сбрасывается при столкновении.</div>
+  </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+  <div class="our-team">
+  <div class="pic">
+  <img src="крестики-нолики.jpg" alt=""/>
+  <a href="крестики-нолики/index.html" class="read-more">&#9655</a>
+  </div>
+  <div class="team-content">
+  <h3 class="title">    
+      <div class="rating">
+      <i class="rating__star far fa-star"></i>
+      <i class="rating__star far fa-star"></i>
+      <i class="rating__star far fa-star"></i>
+      <i class="rating__star far fa-star"></i>
+      <i class="rating__star far fa-star"></i>
+  </div>
+  </h3>
+  <span style="font-size: 20px;"  class="post">Крестики-нолики</span>
+</div>
+<div class="description">Крестики-нолики - это классическая логическая игра, где два игрока по очереди ставят свои символы на квадратное поле. Цель игры - построить первую линию из трех своих значков в ряд по горизонтали, вертикали или диагонали.</div>
+</div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+  <div class="our-team">
+  <div class="pic">
+  <img src="tetris.jpg" alt=""/>
+  <a href="tetris/tetris.html" class="read-more">&#9655</a>
+  </div>
+  <div class="team-content">
+  <h3 class="title">
+          <div class="rating">
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+      </div>
+  </h3>
+  <span style="font-size: 20px;"  class="post">Тетрис</span>
+</div>
+<div class="description">Тетрис - это классическая аркадная игра, она строится на использовании геометрических фигур, которые падают сверху и игрок должен ими управлять так, чтобы заполнить горизонтальные ряды полей из 10 клеток. После чего поля пропадают и всё, что выше, опускается на одну клетку. Игра заканчивается, когда новая фигурка не может поместиться в стакан.</div>
+</div>
+  </div>
+
+</div> <!-- Закрываем первую строку -->
+
+<div class="row"> <!-- Начинаем новую строку -->
+  <div class="col-md-3 col-sm-6">
+    <div class="our-team">
+    <div class="pic">
+    <img src="memory-game.jpg" alt=""/>
+    <a href="Memory-Game-main/index.html" class="read-more">&#9655</a>
+    </div>
+    <div class="team-content">
+    <h3 class="title">
+            <div class="rating">
+            <i class="rating__star far fa-star"></i>
+            <i class="rating__star far fa-star"></i>
+            <i class="rating__star far fa-star"></i>
+            <i class="rating__star far fa-star"></i>
+            <i class="rating__star far fa-star"></i>
+        </div>
+    </h3>
+    <span style="font-size: 20px;"  class="post">Игра на память</span>
+  </div>
+  <div class="description">Memory Game - это увлекательная игра, в которой ваша задача - найти и запомнить фрукты, которые были скрыты под перевернутыми карточками. Игра представляет собой большое поле, разделенное на квадраты, каждый из которых скрывает картинку фрукта. Ваша цель - открыть все квадраты, переворачивая их и запоминая, какой фрукт находится в каждом из них.</div>
+  </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <div class="our-team">
+      <div class="pic">
+      <img src="САПЁР.jpg" alt=""/>
+      <a href="САПЁР/index.html" class="read-more">&#9655</a>
+      </div>
+      <div class="team-content">
+      <h3 class="title">
+              <div class="rating">
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+          </div>
+      </h3>
+      <span style="font-size: 20px;"  class="post">САПЁР</span>
+    </div>
+    <div class="description">Сапёр — игра-головоломка, в которой игровое поле состоит из клеток, некоторые из которых содержат мины. Цель игры — открыть все клетки, не содержащие мины, используя информацию о количестве соседних мин, которая предоставляется при открытии клеток без мин. Для обозначения клеток, в которых игрок предполагает наличие мины, используются флаги. Если игрок кликает по клетке с миной, игра заканчивается поражением.  </div>
+    </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6">
+        <div class="our-team">
+        <div class="pic">
+        <img src="piano.png" alt=""/>
+        <a href="piano/index.html" class="read-more">&#9655</a>
+        </div>
+        <div class="team-content">
+        <h3 class="title">
+                <div class="rating">
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+            </div>
+        </h3>
+        <span style="font-size: 20px;"  class="post">ИГРА ПИАНИНО</span>
+      </div>
+      <div class="description">Игра пианино - это интерактивный инструмент, который превращает каждую клавишу в источник звука. Начните с простых нот и постепенно переходите к более сложным мелодиям. Каждая клавиша воспроизводит уникальный звук, который поможет вам создавать свои собственные музыкальные произведения прямо из браузера. </div>
+      </div>
+        </div>
+
+        
+      <div class="col-md-3 col-sm-6">
+        <div class="our-team">
+        <div class="pic">
+        <img src="paint.jpg" alt=""/>
+        <a href="painting/index.html" class="read-more">&#9655</a>
+        </div>
+        <div class="team-content">
+        <h3 class="title">
+                <div class="rating">
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+                <i class="rating__star far fa-star"></i>
+            </div>
+        </h3>
+        <span style="font-size: 20px;"  class="post">РИСОВАЛКА</span>
+      </div>
+      <div class="description">Рисовалка - это простая игра, которая представляет собой интерактивный инструмент для рисования, позволяющий пользователям свободно создавать и сохранять свои работы в форматах PNG и JPG. Пользователи могут легко делиться своими рисунками, делая игру идеальной для творческих людей и художников.</div>
+      </div>
+        </div>
+  <script> 
+
+  const ratingBlocks = [...document.getElementsByClassName("rating")];
+  const starClassActive = "rating__star fas fa-star";
+  const starClassInactive = "rating__star far fa-star";
+
+  function executeRating(ratingBlock, index) {
+    const stars = [...ratingBlock.getElementsByClassName("rating__star")];
+    let savedRating = localStorage.getItem('rating' + index) || 0;
+
+    stars.map((star, starIndex) => {
+      star.onclick = () => {
+        savedRating = starIndex + 1;
+        localStorage.setItem('rating' + index, savedRating);
+        updateStars(savedRating, stars);
+      };
+    });
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => handleMouseover(star, stars));
+      star.addEventListener('mouseout', () => handleMouseout(savedRating, stars));
+    });
+  }
+
+  function updateStars(rating, stars) {
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].className = i < rating ? starClassActive : starClassInactive;
+    }
+  }
+
+  function handleMouseover(star, stars) {
+    let index = stars.indexOf(star) + 1;
+    updateStars(index, stars);
+  }
+
+  function handleMouseout(savedRating, stars) {
+    updateStars(savedRating, stars);
+  }
+
+  // Обрабатываем каждый блок рейтинга отдельно
+  ratingBlocks.forEach((ratingBlock, index) => {
+    let savedRating = localStorage.getItem('rating' + index);
+    if (savedRating) {
+      updateStars(savedRating, [...ratingBlock.getElementsByClassName("rating__star")]);
+    }
+
+    executeRating(ratingBlock, index);
+  });
+
+
+
+  $(window).resize(function() {
+ $('.our-team').each(function() {
+  var parentWidth = $(this).width();
+  var childDescription = $(this).find('.description');
+  
+  childDescription.css('width', parentWidth);
+ });
+}).trigger('resize');
+
+  </script>
+  </div> <!-- Закрываем вторую строку -->
+</div> <!-- Закрываем контейнер -->

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>РИСОВАЛКА</title>
+
+
+
+</head>
+<style>
+    body {
+        display: flex;
+ justify-content: center;
+ align-items: center;
+  background:transparent;
+  background:url(https://fonoteka.top/uploads/posts/2021-05/1620121633_1-phonoteka_org-p-fon-s-krestikami-i-kruzhkami-5.jpg) repeat;
+ color: #ffffff; /* Белый цвет текста */
+ width: 80%;
+  border-radius: 70%; /* радиус для создания округлости */
+    border: 0;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18pt;
+    font-weight: bold;
+    }
+/* Класс для круглой кнопки */
+.round-button {
+  background-color: #ffffff; /* Белый фон */
+  border: none; /* Без границы */
+  color: rgb(0, 0, 0); /* Черный текст */
+  padding: 15px 22px; /* Отступы вокруг текста */
+  text-align: center; /* Выравнивание текста по центру */
+  text-decoration: none; /* Без подчеркивания */
+  display: inline-block; /* Блочный элемент, но с возможностью выравнивания по центру */
+  font-size: 20px; /* Размер шрифта */
+  margin: 4px 2px; /* Отступы между кнопками */
+  cursor: pointer; /* Курсор в виде руки при наведении */
+  border-radius: 50%; /* Скругление углов, делает кнопку круглой */
+  width: 20px; /* Ширина кнопки */
+  height: 20px; /* Высота кнопки */
+  line-height: 20px; /* Вертикальное выравнивание текста */
+  user-select: none;
+  transition: all 0.35s ease 0s; /* Плавная анимация */
+ }
+ 
+ /* Эффект при наведении на кнопку */
+ .round-button:hover {
+  background-color: #000000; /* Черный фон при наведении */
+  color: rgb(255, 255, 255); /* Белый текст при наведении */
+  width: 40px; /* Ширина кнопки */
+  height: 40px; /* Высота кнопки */
+  line-height: 40px; /* Вертикальное выравнивание текста */
+  box-shadow: 0 0 0 8000px rgba(255, 255, 255, 0.5);
+ }
+ #canvasContainer {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+#myCanvas {
+   z-index: 1;
+   background-image: none;
+}
+
+#overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: white;
+   z-index: -1;
+}
+
+
+.btn {
+   display: inline-block;
+   background-color: #7b38d8; /* Цвет фона */
+   padding: 10px; /* Отступы вокруг текста */
+   width: 170px; /* Ширина кнопки */
+   color: #ffffff; /* Цвет текста */
+   text-align: center; /* Выравнивание текста по центру */
+   border-radius: 5px; /* Скругление углов */
+   transition: all 0.35s ease 0s; /* Плавная анимация */
+   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Тень */
+}
+
+.btn:hover {
+   background-color: #5a23a2; /* Цвет фона при наведении */
+   color: #ffffff; /* Цвет текста при наведении */
+}
+.custom-header {
+   display: inline-block;
+   background-color: #7b38d8; /* Цвет фона */
+   padding: 10px; /* Отступы вокруг текста */
+   width: 400px; /* Ширина кнопки */
+   color: #ffffff; /* Цвет текста */
+   text-align: center; /* Выравнивание текста по центру */
+   border-radius: 5px; /* Скругление углов */
+   transition: all 0.35s ease 0s; /* Плавная анимация */
+   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Тень */
+}
+
+</style>
+
+<body>
+    <div style="position: fixed; top: 0; left: 0; font-weight: normal;">
+        <a href="../INDEX.html" class="round-button">&#9665</a>
+         </div>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5 custom-header">РИСОВАЛКА🎨</h1>
+
+                <div id="canvasContainer">
+                    <canvas id="myCanvas" width="900" height="450" style="border:1px solid black"></canvas>
+                    <div id="overlay"></div>
+                 </div>
+                 
+                 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-danger" id="deleteButton">ОЧИСТИТЬ ПОЛЕ</button>
+                <button type="button" class="btn btn-secondary downloadPng">
+                    СКАЧАТЬ PNG
+                </button>
+                <button type="button" class="btn btn-secondary downloadJpg">
+                    СКАЧАТЬ JPG
+                </button>
+            </div>
+            <div class="col-lg-4 text-center form-group row">
+                <label for="selWidth" class="col-sm-2 col-form-label" style = "background-color: #000000;  border-radius: 50%;     padding: 2px 8px;">Толщина</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="selWidth" aria-describedby="brush" value="3">
+                </div>
+            </div>
+            <div class="col-lg-4 text-center form-group row">
+                <label for="selWidth" class="col-sm-2 col-form-label" style = "background-color: #000000;  border-radius: 50%;     padding: 1px 8px;">Цвет</label>
+                <div class="col-sm-10">
+                    <input type="color" class="form-control" id="selColor" aria-describedby="selColor">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/loadCanvas.js"></script>
+</body>
+
+</html>

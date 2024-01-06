@@ -1,0 +1,157 @@
+*{
+    color: white;
+    font-family: sans-serif;
+    transition: 0.2s ease-in-out;
+    user-select: none;
+}
+
+.align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-color: #252A34;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    text-align: center;
+    padding-top: 5vh;
+    margin-top: 140px;
+    background:transparent;
+    background:url(https://fonoteka.top/uploads/posts/2021-05/1620121633_1-phonoteka_org-p-fon-s-krestikami-i-kruzhkami-5.jpg) repeat;
+}
+
+.turn-container{
+    width: 170px;
+    height: 80px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    position: relative;
+    
+}
+
+.turn-container h3{
+    margin: 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.turn-container .turn-box{
+    border: 0.5px solid #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    
+}
+
+.turn-container .turn-box:nth-child(even){
+    border-right: none;
+    
+}
+
+
+
+ 
+.turn-container::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid #ffffff;
+    border-radius: 50%; /* радиус для создания округлости */
+    background: black; /* черный фон */
+    z-index: -1; /* чтобы фон был под содержимым */
+    transform: scale(1.5); /* увеличивает размер круга */
+  }
+  
+
+  
+
+.bg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 85px;
+    height: 40px;
+    background-color: #FF2E63;
+    z-index: -1;
+}
+
+.main-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 500px;
+    width: 500px;
+    margin: 30px auto;
+    border: 1px solid #ffffff;
+    background-color: #000000;
+}
+
+.box{
+    cursor: pointer;
+    font-size: 4rem;
+    font-weight: 700;
+    border: 1px solid #ffffff;
+}
+
+.box:hover{
+    background-color: #FF2E63;
+}
+
+#play-again{
+    background-color: #FF2E63;
+    padding: 10px 25px;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#play-again:hover{
+    padding: 10px 40px;
+    background-color: #08D9D6;
+    color: #000;
+}
+
+
+/* Класс для круглой кнопки */
+.round-button {
+    background-color: #ffffff; /* Белый фон */
+    border: none; /* Без границы */
+    color: rgb(0, 0, 0); /* Черный текст */
+    padding: 15px 22px; /* Отступы вокруг текста */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Блочный элемент, но с возможностью выравнивания по центру */
+    font-size: 20px; /* Размер шрифта */
+    margin: 4px 2px; /* Отступы между кнопками */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    border-radius: 50%; /* Скругление углов, делает кнопку круглой */
+    width: 20px; /* Ширина кнопки */
+    height: 20px; /* Высота кнопки */
+    line-height: 20px; /* Вертикальное выравнивание текста */
+    user-select: none;
+    transition: all 0.35s ease 0s; /* Плавная анимация */
+   }
+   
+   /* Эффект при наведении на кнопку */
+   .round-button:hover {
+    background-color: #000000; /* Черный фон при наведении */
+    color: rgb(255, 255, 255); /* Белый текст при наведении */
+    width: 40px; /* Ширина кнопки */
+    height: 40px; /* Высота кнопки */
+    line-height: 40px; /* Вертикальное выравнивание текста */
+    box-shadow: 0 0 0 8000px rgba(255, 255, 255, 0.5);
+   }
+   
+   
+   
+   
+
+     

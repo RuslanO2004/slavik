@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game with JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div style="position: fixed; top: 0; left: 0;">
+        <a href="../INDEX.html" class="round-button">&#9665</a>
+         </div>
+    <div class="game">
+        <div class="controls">
+            <button>СТАРТ</button>
+            <button id="restart">РЕСТАРТ</button>
+            <div class="stats">
+                <div class="moves">Ходов: 0</div>
+                <div class="timer">Время: 0 сек</div>
+            </div>
+        </div>
+        <div class="board-container">
+            <div class="board" data-dimension="4"></div>
+            <div class="win">You won!</div>
+        </div>
+    </div>
+</body>
+</html>
